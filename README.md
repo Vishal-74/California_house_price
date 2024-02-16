@@ -19,7 +19,7 @@ We leverage machine learning algorithms, specifically Random Forest, to analyze 
 
 ## Usage
 
-1. **Install Dependencies**: Ensure you have Python installed along with necessary libraries such as NumPy, Pandas, Streamlit, and Scikit-learn. You can install dependencies using `pip install -r requirements.txt`.
+1. **Install Dependencies**: Ensure you have Python installed along with necessary libraries such as NumPy, Pandas, Streamlit, and Scikit-learn. 
 
 2. **Clone the Repository**: Clone this repository to your local machine using `git clone`.
 
