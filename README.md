@@ -18,7 +18,7 @@ The dataset used in this project contains various housing features such as locat
 We leverage machine learning algorithms, specifically Random Forest, to analyze the dataset and generate accurate predictions of house prices. The model is trained on historical housing data, allowing it to learn patterns and relationships within the dataset. The trained model is then deployed to predict house prices based on user-provided input features.
 
 ## Usage
-0. **You can directly eun app.py**
+0. **You can directly run app.py**
 
 1. **Install Dependencies**: Ensure you have Python installed along with necessary libraries such as NumPy, Pandas, Streamlit, and Scikit-learn. 
 
