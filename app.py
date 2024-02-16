@@ -1,8 +1,21 @@
 import numpy as np
 import streamlit as st
+import gdown
+import os
 import pickle
 
-loaded_model = pickle.load(open('random_forest_model.pkl', 'rb'))
+# Define the Google Drive file ID and the destination path for the pickle file
+file_id = '12oLd86CNer3XWOPXgPkYmFsARV2mTxTx'
+output_path = 'random_forest_model.pkl'
+
+# Download the file from Google Drive if it doesn't exist locally
+if not os.path.exists(output_path):
+    st.write('Downloading model file...')
+    gdown.download(f'https://drive.google.com/uc?id={file_id}', output_path, quiet=False)
+    st.write('Download complete!')
+
+# Load the model
+loaded_model = pickle.load(open(output_path, 'rb'))
 
 # Define a function to preprocess ocean_proximity using one-hot encoding
 def preprocess_ocean_proximity(ocean_proximity):
@@ -10,6 +23,7 @@ def preprocess_ocean_proximity(ocean_proximity):
     encoded_proximity = [1 if category == ocean_proximity else 0 for category in categories]
     return encoded_proximity
 
+# Define a function to preprocess input features
 def preprocess_input_features(longitude, latitude, housing_median_age, total_rooms, total_bedrooms, population, households, median_income, ocean_proximity):
     rooms_per_house = total_rooms / households
     bedrooms_ratio = total_bedrooms / total_rooms
@@ -19,12 +33,14 @@ def preprocess_input_features(longitude, latitude, housing_median_age, total_roo
     return [longitude, latitude, housing_median_age, total_rooms, total_bedrooms, population, households, median_income,
             rooms_per_house, bedrooms_ratio, people_per_house] + processed_ocean_proximity
 
+# Define a function to predict house prices
 def house_price_prediction(input_data):
     input_data = np.asarray(input_data)
     input_data_reshaped = input_data.reshape(1, -1)
     predicted_price = loaded_model.predict(input_data_reshaped)
     return predicted_price[0]
 
+# Main function to run the Streamlit app
 def main():
     # Add image and project title in the sidebar
     st.sidebar.image('california.jpg.webp', width=200, caption='California', use_column_width=True, output_format='JPEG')
@@ -59,5 +75,6 @@ def main():
         predicted_price = house_price_prediction(input_data)
         st.success(f'Predicted House Price: ${predicted_price:,.2f}')
 
+# Run the main function
 if __name__ == '__main__':
     main()
