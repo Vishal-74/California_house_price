@@ -5,5 +5,4 @@ pandas
 plotly
 matplotlib
 scikit-learn
-sklearn
 pickle
