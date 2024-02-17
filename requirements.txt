@@ -4,4 +4,4 @@ gdown
 pandas
 plotly
 matplotlib
-scikit-learn
+scikit-learn==1.2.2
