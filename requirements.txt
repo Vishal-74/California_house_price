@@ -1,8 +1,6 @@
 numpy
 streamlit
 gdown
-os
-pickle
 pandas
 plotly
 matplotlib
